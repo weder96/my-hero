@@ -6,7 +6,7 @@ class PracticeStore {
   
   public practice: any = []  
   public practiceQuestion: any = []  
-  public baseApiCourse: string = "/posts";
+  public baseApiCourse: string = "/listBuckets";
 
   public constructor() {
       makeAutoObservable(this,{        

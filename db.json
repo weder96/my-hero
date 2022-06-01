@@ -13,5 +13,133 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "listBuckets":
+  [
+    {
+        "name": "code-file-images",
+        "owner": {
+            "displayName": "wmarians",
+            "id": "c1871a859680675bdf6fec6542dd24491ecabce1a10e2723c1f85c317feaf007"
+        },
+        "creationDate": "2021-08-27T19:37:28.000+0000"
+    },
+    {
+        "name": "data-lake-crime-results",
+        "owner": {
+            "displayName": "wmarians",
+            "id": "c1871a859680675bdf6fec6542dd24491ecabce1a10e2723c1f85c317feaf007"
+        },
+        "creationDate": "2022-04-27T12:54:41.000+0000"
+    },
+    {
+        "name": "data-lake-crimes",
+        "owner": {
+            "displayName": "wmarians",
+            "id": "c1871a859680675bdf6fec6542dd24491ecabce1a10e2723c1f85c317feaf007"
+        },
+        "creationDate": "2022-04-27T12:51:08.000+0000"
+    }
+  ],
+  "code-file-images" : [
+    {
+        "bucketName": "code-file-images",
+        "key": "John Frusciante-41222097-04f0-4c6c-a031-9d5e7fe9da30/b0d6c273-fb5d-41b1-bba8-58eb7c6c9ff1.jpg-db0ec424-8ca9-4c6d-86e3-72bbc0929134",
+        "size": 93548,
+        "lastModified": "2021-08-27T19:55:36.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "50edc8cae89583200866179db72489db"
+    },
+    {
+        "bucketName": "code-file-images",
+        "key": "Test Send Image 01-b3b5d4cc-0773-11ec-9a03-0242ac130003/528ece6ecf57bf0d3c09c3503c7c8799.jpg-cd3c2b06-f162-4517-b7f1-a90418908839",
+        "size": 156424,
+        "lastModified": "2022-05-29T18:17:54.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "2f7d6d5f9a1749336ef26e77d5019b97"
+    },
+    {
+        "bucketName": "code-file-images",
+        "key": "Test Send Image 01-b3b5d4cc-0773-11ec-9a03-0242ac130003/Do-more (1).jpg-2c0ed7bb-f2a2-4e88-b11f-7d626abf3e3c",
+        "size": 540518,
+        "lastModified": "2021-08-27T20:43:14.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "b9cb3cf6d79924a40511a78433aacdd9"
+    },
+    {
+        "bucketName": "code-file-images",
+        "key": "Test Send Image 01-b3b5d4cc-0773-11ec-9a03-0242ac130003/homem_aranha.jpg-b154fc22-ba85-47d7-b543-38953cb24246",
+        "size": 156424,
+        "lastModified": "2022-05-29T18:37:33.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "2f7d6d5f9a1749336ef26e77d5019b97"
+    },
+    {
+        "bucketName": "code-file-images",
+        "key": "Test Send Image 01-b3b5d4cc-0773-11ec-9a03-0242ac130003/images.jpeg-a28e5cf6-817d-4584-8b92-6ad5f8d8821c",
+        "size": 5745,
+        "lastModified": "2022-05-29T18:28:49.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "050817c91dc25e4a56b72377d9f5e867"
+    },
+    {
+        "bucketName": "code-file-images",
+        "key": "Test Send Image 01-b3b5d4cc-0773-11ec-9a03-0242ac130003/java.png-e37341eb-68b4-495b-975f-38c218bb53ab",
+        "size": 53019,
+        "lastModified": "2021-08-28T13:49:53.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "2304b5cc33834d8e0f88da4e9e40ad36"
+    },
+    {
+        "bucketName": "code-file-images",
+        "key": "Test Send Image 02-4faf0987-5810-4df6-a124-3551a2c279e9/Do-more (1).jpg-1d526b6e-e864-4487-a543-6a6e6307d59c",
+        "size": 540518,
+        "lastModified": "2021-08-28T14:10:01.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "b9cb3cf6d79924a40511a78433aacdd9"
+    },
+    {
+        "bucketName": "code-file-images",
+        "key": "Test Send Image 02-4faf0987-5810-4df6-a124-3551a2c279e9/aws_practitioner.png-cde4bacb-166d-4f7a-bfdc-35446faebfd6",
+        "size": 112006,
+        "lastModified": "2021-08-27T20:21:10.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "a8ad59de3cbc5f474565dbbbc5eea584"
+    },
+    {
+        "bucketName": "code-file-images",
+        "key": "Test Send Image 03-57aefdde-043c-4fa0-be3c-1149137f6092/528ece6ecf57bf0d3c09c3503c7c8799.jpg-badd8e75-7b8d-4054-b35b-efd23fade86e",
+        "size": 156424,
+        "lastModified": "2022-05-29T18:20:54.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "2f7d6d5f9a1749336ef26e77d5019b97"
+    },
+    {
+        "bucketName": "code-file-images",
+        "key": "Test Send Image 03-57aefdde-043c-4fa0-be3c-1149137f6092/aws_practitioner.png-ea4aa8ad-cfea-45dd-9148-f710e1690386",
+        "size": 112006,
+        "lastModified": "2021-08-28T14:16:10.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "a8ad59de3cbc5f474565dbbbc5eea584"
+    },
+    {
+        "bucketName": "code-file-images",
+        "key": "Test Send Image 03-57aefdde-043c-4fa0-be3c-1149137f6092/java.png-2f6f52db-2828-45b7-81f3-10284447112b",
+        "size": 53019,
+        "lastModified": "2021-08-28T14:15:37.000+0000",
+        "storageClass": "STANDARD",
+        "owner": null,
+        "etag": "2304b5cc33834d8e0f88da4e9e40ad36"
+    }
+]
 }

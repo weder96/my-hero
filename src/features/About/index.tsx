@@ -5,6 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { useContext } from "react";
 import PracticeStore  from '../../store/practice/PracticeStore';
 
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+
+import ShowComponents  from '../../components/ShowComponets/ShowComponents';
+
 function About(props: any) {
     const practiceStore = useContext(PracticeStore);
     console.log('store ', practiceStore)
@@ -20,17 +25,17 @@ function About(props: any) {
     const { t } = useTranslation();
     return (
             <>
-                <br/>
-                About:  {t('main.header.welcome')}  
-                {
-                practiceStore.practice ? practiceStore.practice.map((practice: any, indx: number) => 
-                    <div key={indx}>
-                       id: {practice.id} <br/>
-                       author: {practice.author} <br/>
-                       title: {practice.title}<br/><br/>
-                    </div> 
-                ): []
-            }      
+            <br/>
+            About:  {t('main.header.welcome')}  
+            <ShowComponents case={practiceStore.practice.length > 0}>
+                <div className="card">
+                    <DataTable value={practiceStore.practice} responsiveLayout="scroll">
+                        <Column field="name" header="Name"></Column>
+                        <Column field="owner.displayName" header="owner"></Column>
+                        <Column field="creationDate" header="creationDate"></Column>
+                    </DataTable>
+                </div>
+            </ShowComponents>
             </>
         );
 }
