@@ -1,0 +1,15 @@
+{
+    "main.header.header": "Cabeçalho",
+    "main.header.details": "Detalhes",
+    "main.header.body": "Corpo",
+    "main.header.response": "Resposta",
+    "main.header.to.response": "Responder",
+    "main.header.footer": "Rodape",
+    "main.header.welcome": "Seja Bem Vindo!!!",
+    "main.page.title": "{{title}} is running!",
+    "main.page.section.languages.title": "Languages Typescript",
+    "main.page.section.languages.subtitle": "Lets try to change language English!",
+    "main.page.section.languages.english": "English",
+    "main.page.section.languages.french": "Français"
+  }
+  

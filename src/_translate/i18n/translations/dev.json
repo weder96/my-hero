@@ -1,0 +1,14 @@
+{
+  "main.header.header": "Header",
+  "main.header.details": "Detais",
+  "main.header.body": "Body",
+  "main.header.response": "Response",
+  "main.header.to.response": "Responder",
+  "main.header.footer": "Footer",
+  "main.header.welcome": "Seja Bem Vindo",
+  "main.page.title": "{{title}} is running!",
+  "main.page.section.languages.title": "Languages",
+  "main.page.section.languages.subtitle": "Lets try to change language!",
+  "main.page.section.languages.english": "English",
+  "main.page.section.languages.french": "Français"
+}
