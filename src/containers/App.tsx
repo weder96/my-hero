@@ -14,11 +14,16 @@ import light from '../styles/themes/light';
 import GlobalStyle from '../styles/global';
 
 import Routs from './routers/Routes';
+import { Toast } from 'primereact/toast';
+
+import { Messages } from 'primereact/messages';
+
+import toastStore from '../store/toast/ToastStore'
+import messageStore from '../store/messages/MessageStore'
 
 const App = () => {
 
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
-
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
   };
@@ -29,6 +34,8 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <div className="App"> 
               <GlobalStyle/> 
+              <Messages ref={elem => (messageStore.message = elem)} />
+              <Toast ref={el => (toastStore.toast = el)} />
               <Routs  toggleTheme={toggleTheme} />
           </div>
         </ThemeProvider>
