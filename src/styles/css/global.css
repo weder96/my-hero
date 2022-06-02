@@ -1,0 +1,39 @@
+  .card-dark.p-card{    
+    background: #323236 !important;
+    border-color: #404046 !important;  
+  }
+  
+  .card-dark p{
+    color: #FFFFFF !important;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  
+  .card-dark i + label{
+    color: #FFFFFF !important;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  .card-dark .padding-course-left{
+    background: #323236 !important;
+  }
+
+  .base-card{
+    width: 115%;
+    margin-left: 20px;
+}
+
+.base-card-dark{
+  width: 100%;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.base-card-ligth {
+  width: 99%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+  
+  

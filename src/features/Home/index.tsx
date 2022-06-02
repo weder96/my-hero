@@ -54,7 +54,7 @@ function Home(props: any) {
         messageStore.exibirMensagensInfo([successMessage])
     }
 
-
+    console.log('toggleTheme :', props.toggleTheme)
     return (
         <>
             <HeaderSwitch toggleTheme={props.toggleTheme} view={props.view}/>
