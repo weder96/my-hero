@@ -35,5 +35,129 @@
   margin-bottom: 20px;
 }
 
-  
+.card-dark .dark-font{
+  color: #FFF !important;
+}
+ 
+.card-ligth .dark-font{
+  color: #000 !important;
+}
+
+
+
+.card-dark .p-datatable .p-datatable-tbody > tr {
+  background: #323236 !important;
+  color: #FFFFFF !important;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+  outline-color: #a6d5fa;
+}
+
+.card-dark .p-datatable .p-datatable-thead > tr > th {
+  text-align: left;
+  padding: 1rem 1rem;
+  border: 1px solid #e9ecef;
+  border-width: 0 0 1px 0;
+  font-weight: 600;
+  background: #323236 !important;
+  color: #FFFFFF !important;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+
+.base-card-ligth .p-datatable .p-datatable-thead > tr > th {
+  text-align: left;
+  padding: 1rem 1rem;
+  border: 1px solid #e9ecef;
+  border-width: 0 0 1px 0;
+  font-weight: 600;
+  color: #495057;
+  background: #f8f9fa;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+
+.card-dark .p-paginator {
+  background: #323236 !important;
+  color: #FFFFFF !important;
+  border: solid #e9ecef;
+  border-width: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+}
+
+
+.dialog-dark.p-dialog .p-dialog-header {
+  border-bottom: 0 none;
+  background: #323236 !important;
+  color: #FFFFFF !important;
+  padding: 1.5rem;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+
+.dialog-dark.p-dialog .p-dialog-content {
+  background: #323236 !important;
+  color: #FFFFFF !important;
+  padding: 0 1.5rem 2rem 1.5rem;
+}
+
+
+.dialog-dark.p-dialog .p-dialog-footer {
+  border-top: 0 none;
+  background: #323236 !important;
+  color: #FFFFFF !important;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  text-align: right;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.dialog-dark p{
+  color: #FFFFFF !important;
+  font-size: 1.1rem;
+  line-height: 1.5; 
+}
+
+.card-dark h6 {
+  color: #FFFFFF !important;
+  margin-right: 20px;
+}
+
+.card-dark .body-question {
+  background: #323236 !important;
+  color: #FFFFFF !important;
+}
+
+.card-dark-explained p {
+  color: #FFFFFF !important;
+}
+
+.card-dark .MuiTypography-subtitle1{
+  color: #FFFFFF !important;
+}
+
+.card-dark .MuiTypography-subtitle2{
+  color: #FFFFFF !important;
+}
+
+.card-dark .MuiTypography-caption{
+  color: #FFFFFF !important;
+}
+
+.card-dark.body-questions{
+  background: #3b3b41;
+}
+
+.back-dark-control {
+  background: #323236 !important;
+    
+}
   

@@ -5,20 +5,27 @@ import { observer } from "mobx-react";
 import { useTranslation } from 'react-i18next';
 
 import { useContext } from "react";
-import PracticeStore  from '../../store/practice/PracticeStore';
+import BucketStore  from '../../store/buckets/BucketStore';
 import { ThemeContext } from 'styled-components';
+import { useLocation } from "react-router-dom";
+import { LocationState } from "../../shared/type/LocationState";
 
 function Upload(props: any) {
-    const practiceStore = useContext(PracticeStore);
+    const bucketStore = useContext(BucketStore);
     const { title } = useContext(ThemeContext);
+    const  location  = useLocation();
+    const { id, bucket } = location.state as LocationState;
     console.log('title ', title)
+    console.log('state ', id)
+    console.log('state ', bucket)
+    
 
-    console.log('store ', practiceStore)
-    if (!practiceStore) throw Error("Store shouldn't be null");
+    console.log('store ', bucketStore)
+    if (!bucketStore) throw Error("Store shouldn't be null");
 
     useEffect(() => {    
         function fetchAbout(){
-            practiceStore.findByPracticeById();        
+            bucketStore.findByBuckets();        
         }
         fetchAbout();
         // eslint-disable-next-line react-hooks/exhaustive-deps    

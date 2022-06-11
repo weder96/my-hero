@@ -2,7 +2,7 @@ import { createContext } from 'react';
 import { observable, action, makeAutoObservable } from "mobx";
 import apiLocal from '../../services/api/apiLocal';
 
-class PracticeStore {
+class BucketStore {
   
   public practice: any = []  
   public practiceQuestion: any = []  
@@ -12,22 +12,15 @@ class PracticeStore {
       makeAutoObservable(this,{        
         practice: observable,
         practiceQuestion:  observable,
-        findByPracticeById: action,
-        findByPracticeByIdQuestion: action
+        findByBuckets: action
       });
   }
 
-  findByPracticeById = () => {          
+  findByBuckets = () => {          
     apiLocal.get(this.baseApiCourse)
     .then(res =>  this.practice = res.data);
   };
-
-  findByPracticeByIdQuestion = (id: number) => {          
-    apiLocal.get(this.baseApiCourse+'/practice/'+id)
-    .then(res =>  this.practiceQuestion = res.data);
-  };
-
 }
 
-export default createContext(new PracticeStore());
+export default createContext(new BucketStore());
 
