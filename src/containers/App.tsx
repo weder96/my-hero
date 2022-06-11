@@ -21,6 +21,7 @@ import { Messages } from 'primereact/messages';
 
 import toastStore from '../store/toast/ToastStore'
 import messageStore from '../store/messages/MessageStore'
+import HeaderSwitch from '../components/Header';
 
 const App = () => {
 
@@ -35,6 +36,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <div className="App"> 
               <GlobalStyle/> 
+              <HeaderSwitch toggleTheme={toggleTheme} view="Campus Party 2022"/>
               <Messages ref={elem => (messageStore.message = elem)} />
               <Toast ref={el => (toastStore.toast = el)} />
               <Routs  toggleTheme={toggleTheme} />
