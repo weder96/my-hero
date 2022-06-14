@@ -67,10 +67,10 @@ function Buckets(props: any) {
    }
 
     useEffect(() => {    
-        function fetchAbout(){
+        function fetchTickets(){
             bucketStore.findByBuckets();        
         }
-        fetchAbout();
+        fetchTickets();
         // eslint-disable-next-line react-hooks/exhaustive-deps    
       }, []);
     const { t } = useTranslation();
@@ -78,7 +78,7 @@ function Buckets(props: any) {
             <>
             <BreadCrumb />
             <br/>
-            Buckets ({bucketStore.practice.length}) Info <br/>
+            Buckets ({bucketStore.buckets.length}) Info <br/>
             Buckets are containers for data stored in S3. Learn more
             <Button icon="pi pi-spinner" className="p-button-outlined p-button-secondary"/>
             <Button label="Copy ARN" icon="pi pi-copy" className="p-button-outlined p-button-secondary" />
@@ -86,9 +86,9 @@ function Buckets(props: any) {
             <Button label="Delete" className="p-button-outlined p-button-secondary" />
             <Button label="Create Bucket" onClick={handleClickCreateBucket}/>
             <br/>
-            <ShowComponents case={bucketStore.practice.length > 0}>
+            <ShowComponents case={bucketStore.buckets.length > 0}>
                 <Card title="" className={title === 'dark' ? 'card-dark mb-4' : 'base-card-ligth'}>
-                    <DataTable value={bucketStore.practice} 
+                    <DataTable value={bucketStore.buckets} 
                                selection={selectedProducts}
                                onSelectionChange={(e) => setSelectedProducts(e.value)}
                                 dataKey="name" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}

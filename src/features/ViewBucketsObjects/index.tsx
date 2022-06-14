@@ -13,24 +13,25 @@ import { ThemeContext } from 'styled-components';
 
 import Link from '@material-ui/core/Link';
 
-
 import BucketStore  from '../../store/buckets/BucketStore';
+import ShowComponents  from '../../components/ShowComponets/ShowComponents';
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
-import { LocationState } from "../../shared/type/LocationState";
+import { LocationStateObjects } from "../../shared/type/LocationStateObjects";
 
-function ViewBuckets(props: any) {
+function ViewBucketsObjects(props: any) {
     let navigate = useNavigate();
     const [selectedObjects, setSelectedObjects] = useState(null);
     const bucketStore = useContext(BucketStore);
     const { title } = useContext(ThemeContext);
-    
     const  location  = useLocation();
-    const { id, bucket } = location.state as LocationState;
+    console.log('location ',location)
+    const { id, bucket, key } = location.state as LocationStateObjects;
     console.log('title ', title)
-    console.log('state ', id)
-    console.log('state ', bucket)
+    console.log('state bucket', bucket)
+    console.log('state objects', id)
+    console.log('state key', key)
     console.log('store ', bucketStore)
     if (!bucketStore) throw Error("Store shouldn't be null");
 
@@ -48,18 +49,16 @@ function ViewBuckets(props: any) {
         );
    }
 
-   const handleClickLinkList = (event: any, key: string) => {
-    event.preventDefault();       
-    let keys = key.replace("%20", " ");
-    let keyUrl = key.replace("%20", "+");
-    let state = { id: 9,  bucket: bucket, key: keys };         
-    navigate("/s3/buckets/"+bucket+"/prefix/"+keyUrl, { state })
+   const handleClickLinkList = (event: any, bucket: string) => {
+    event.preventDefault();                
+    navigate("/s3/buckets/"+bucket+"/objects", { state: { id: 7, bucket: bucket } })
    }
 
    const nameTypeBodyTemplate = (rowData: any) => {
+    let type = rowData.key.split(".");
     return(
         <>
-        <label className="dark-font">Folder</label>
+        <label className="dark-font">{type[1]}</label>
         </> 
     );
    }
@@ -72,8 +71,9 @@ function ViewBuckets(props: any) {
     );
    }
 
-   const ownerBodyTemplate = (rowData: any) => {
-    return ( <> <label className="dark-font"> {rowData.owner} </label></>);
+   const sizeBodyTemplate = (rowData: any) => {
+    let value = (Number(rowData.size) / 1024).toFixed(1);
+    return ( <> <label className="dark-font"> {value} KB </label></>);
    }
 
    const storageClassBodyTemplate = (rowData: any) => {
@@ -83,27 +83,43 @@ function ViewBuckets(props: any) {
         </> 
     );
    }
-   
 
+
+   useEffect(() => {    
+    function fetchBucketsByName(){
+        bucketStore.findObjectsByName(bucket);        
+    }
+    fetchBucketsByName();
+    // eslint-disable-next-line react-hooks/exhaustive-deps    
+  }, []);
+   
    const verifyFolderByObject = (files: any) => {
     let objects: any = [] 
     files.forEach((file: any) => {
-        let key = file.key.split("/");
+        let keys = file.key.split("/");
         
-        let obj = {
-            "bucketName": file.bucketName ,
-            "key": key[0]+ "/" ,
-            "size": file.size ,
-            "lastModified": file.lastModified ,
-            "storageClass": file.storageClass,
-            "owner": file.owner,
-            "etag": file.etag
-        }
-        if(!veryfyObjectsContainsKey(objects, key[0]+"/")){
-            objects.push(obj);
-        }
+
+        if(veryfyFileContainsKey(file, key)){
+            let obj = {
+                "bucketName": file.bucketName ,
+                "key": keys[1],
+                "size": file.size ,
+                "lastModified": file.lastModified ,
+                "storageClass": file.storageClass,
+                "owner": file.owner,
+                "etag": file.etag
+            }
+            if(!veryfyObjectsContainsKey(objects, keys[1])){
+                objects.push(obj);
+            }
+       }
+
     });
     return objects;
+   }
+
+   const veryfyFileContainsKey = (file: any, key: string) : boolean => {
+      return file.key.includes(key);
    }
 
 
@@ -115,41 +131,35 @@ function ViewBuckets(props: any) {
     return valid;
    }
 
-    useEffect(() => {    
-        function fetchBucketsByName(){
-            bucketStore.findObjectsByName(bucket);        
-        }
-        fetchBucketsByName();
-        // eslint-disable-next-line react-hooks/exhaustive-deps    
-      }, []);
     const { t } = useTranslation();
     return (
         <React.Fragment>
             <br/>
-            <h2>{bucket}</h2> info <br/><br/>
+            <h2>{key}</h2> info <br/><br/>
             ViewBuckets:  {t('main.header.welcome')}  
 
             <Button label="Upload ..." onClick={handleClickUpload}/>
             <br/>
-            <Card title="" className={title === 'dark' ? 'card-dark mb-4' : 'base-card-ligth'}>
+            <ShowComponents case={bucketStore.objects.length > 0}>
+                <Card title="" className={title === 'dark' ? 'card-dark mb-4' : 'base-card-ligth'}>
                     <DataTable value={verifyFolderByObject(bucketStore.objects)} 
                                selection={selectedObjects}
                                onSelectionChange={(e) => setSelectedObjects(e.value)}
                                 dataKey="name" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Objects"
-                                responsiveLayout="scroll"
-                                emptyMessage="No Objects found.">
+                                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} buckets"
+                                responsiveLayout="scroll">
                         <Column selectionMode="multiple" headerStyle={{ width: '3rem' }} exportable={false}></Column>
                         <Column header="Name" body={nameBodyTemplate} ></Column>
                         <Column header="Type"  body={nameTypeBodyTemplate}></Column>
                         <Column header="Last Modify"  body={nameLastModifyBodyTemplate}></Column>
-                        <Column header="Owner" body={ownerBodyTemplate} ></Column>
+                        <Column header="Size" body={sizeBodyTemplate} ></Column>
                         <Column header="Storage Class" body={storageClassBodyTemplate}></Column>
                     </DataTable>
                 </Card>
+            </ShowComponents>
         </React.Fragment>
         );
 }
 
-export default observer(ViewBuckets)
+export default observer(ViewBucketsObjects)

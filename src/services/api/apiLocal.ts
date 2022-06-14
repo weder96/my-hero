@@ -20,6 +20,7 @@ apiLocal.interceptors.request.use(function (config) {
     }    
     return config;
   }, function (error) {
+    console.log('error request :', error)
     document.body.classList.remove('loading-indicator');    
     return Promise.reject(error);
   });
@@ -29,6 +30,7 @@ apiLocal.interceptors.request.use(function (config) {
     appStore.decrementLoading();
     return response;
   }, function (error) {
+    console.log('error response :', error)
     document.body.classList.remove('loading-indicator');    
      if (error.response && error.response.status === 403) {           
      logout();        

@@ -11,6 +11,7 @@ import NotFound from  '../../common/NotFound';
 
 import PrivateRoute, { ProtectedRouteProps } from "./PrivateRoute";
 import ViewBuckets from '../../features/ViewBuckets';
+import ViewBucketsObjects from '../../features/ViewBucketsObjects';
 
 function Routs(props: any){
   
@@ -29,6 +30,7 @@ function Routs(props: any){
         <Route path='/' element={<Home toggleTheme={toggleTheme}/>} /> 
         <Route path='/s3/buckets' element={<Home toggleTheme={toggleTheme}/>} />
         <Route path="/s3/buckets/:bucketName/objects" element={<ViewBuckets />} />
+        <Route path="/s3/buckets/:bucketName/prefix/:object" element={<ViewBucketsObjects />} />
         <Route path="/s3/create/buckets" element={<CreateBucket />} />
         <Route path='/s3/upload/:bucketName' element={<Upload />} />
         <Route path='/login' element={<Login />} />
