@@ -3,7 +3,7 @@ import appStore from '../../store/loading/LoadingStore'
 import { getToken, logout } from "../auth/AuthService";
 
 const apiLocal = axios.create({
-    baseURL: 'http://localhost:8080'
+    baseURL: 'http://localhost:9090'
 })
 
 apiLocal.interceptors.request.use(function (config) {

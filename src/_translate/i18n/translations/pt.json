@@ -1,6 +1,7 @@
 {
     "main.header.header": "Cabeçalho",
     "main.header.details": "Detalhes",
+    "main.bucket.create" : "Create Bucket",
     "main.header.body": "Corpo",
     "main.header.response": "Resposta",
     "main.header.to.response": "Responder",

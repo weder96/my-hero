@@ -31,7 +31,6 @@ function ViewBuckets(props: any) {
     console.log('title ', title)
     console.log('state ', id)
     console.log('state ', bucket)
-    console.log('store ', bucketStore)
     if (!bucketStore) throw Error("Store shouldn't be null");
 
 

@@ -26,13 +26,11 @@ function ViewBucketsObjects(props: any) {
     const bucketStore = useContext(BucketStore);
     const { title } = useContext(ThemeContext);
     const  location  = useLocation();
-    console.log('location ',location)
     const { id, bucket, key } = location.state as LocationStateObjects;
     console.log('title ', title)
     console.log('state bucket', bucket)
     console.log('state objects', id)
     console.log('state key', key)
-    console.log('store ', bucketStore)
     if (!bucketStore) throw Error("Store shouldn't be null");
 
 

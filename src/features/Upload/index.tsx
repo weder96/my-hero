@@ -14,18 +14,18 @@ import { useContext } from "react";
 import BucketStore  from '../../store/buckets/BucketStore';
 import toastStore  from '../../store/toast/ToastStore';
 import { ThemeContext } from 'styled-components';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LocationState } from "../../shared/type/LocationState";
 import { autorun } from "mobx";
+import { Grid } from "@material-ui/core";
 
 function Upload(props: any) {
-
+    let navigate = useNavigate();
     const [totalSize, setTotalSize] = useState(0);
     let fileUploadRef : any;
 
     const onTemplateSelect = (e: any) => {
         let _totalSize = totalSize;
-        console.log('onTemplateSelect', e)
         if(e.files.length > 0){
             e.files && [...e.files].forEach((file: any) => {
                 _totalSize += file.size;
@@ -37,7 +37,6 @@ function Upload(props: any) {
 
     const onTemplateUpload = (e: any) => {
         let _totalSize = 0;
-        console.log('onTemplateUpload :', e);
         [...e.files].forEach((file: any) => {
             _totalSize += (file.size || 0);
         });
@@ -97,7 +96,8 @@ function Upload(props: any) {
 
     const uploadInvoice = (invoiceFile: any) => {
         console.log('uploadInvoice :', invoiceFile);
-        bucketStore.uploadFilesS3(invoiceFile, bucket);
+        let profileId = "123";
+        bucketStore.uploadFilesS3(invoiceFile, bucket, profileId);
         reactToStuff();
     };
 
@@ -112,11 +112,15 @@ function Upload(props: any) {
     const  location  = useLocation();
     const { id, bucket } = location.state as LocationState;
     console.log('store ', bucketStore, id, title)
+
+    const goPageInitial = (e: any) => {
+        e.preventDefault();
+        navigate("/")
+    }
     
     if (!bucketStore) throw Error("Store shouldn't be null");
 
     const reactToStuff = autorun(() => {
-        console.log("New Value: ", bucketStore.isMobile);
         if(bucketStore.isMobile === true){
             bucketStore.setIsMobile(false);
             let successMessage = 'Upload Feito!!!';
@@ -165,6 +169,12 @@ function Upload(props: any) {
                     uploadOptions={uploadOptions} 
                     cancelOptions={cancelOptions} 
                 /> 
+
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Button type="button" label="Cancel" icon="pi pi-check" className="p-button-secondary" onClick={(e)=> goPageInitial(e)}/>
+                    </Grid>
+                </Grid>
             </>
         );
 }

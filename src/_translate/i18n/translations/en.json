@@ -1,5 +1,6 @@
 {
     "main.header.header": "Header",
+    "main.bucket.create" : "Create Bucket",
     "main.header.details": "Detais",
     "main.header.body": "Body",
     "main.header.response": "Response",
