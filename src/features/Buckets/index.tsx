@@ -19,6 +19,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import BreadCrumb from "../../components/BreadCrumb";
 import { Button } from "primereact/button";
 import { Grid } from "@material-ui/core";
+import { formatedDate } from "../../utils/utils";
 
 function Buckets(props: any) {
     let navigate = useNavigate();
@@ -27,6 +28,10 @@ function Buckets(props: any) {
     const { title } = useContext(ThemeContext);
     console.log('title ', title)
     if (!bucketStore) throw Error("Store shouldn't be null");
+
+    const listScope = [{ 'label': 'Home', 'link': '/s3/buckets' }] 
+    const view = "Buckets";
+
 
     const handleClickLink = (event: any) => {
         event.preventDefault();
@@ -66,6 +71,14 @@ function Buckets(props: any) {
         );
     }
 
+    const dateBodyCreated = (rowData: any) => {
+        return (
+            <>
+                <label className="dark-font">{formatedDate(rowData.creationDate)}</label>
+            </>
+        );
+    }
+
     useEffect(() => {
         function fetchTickets() {
             bucketStore.findByBuckets();
@@ -76,18 +89,18 @@ function Buckets(props: any) {
     const { t } = useTranslation();
     return (
         <>
-            <BreadCrumb />
+             <BreadCrumb title={view} listScope={listScope} active={view}/>
             <br />
             <Grid container spacing={2}>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={4} md={4} className="align-left pl-2">
                     Buckets ({bucketStore.buckets.length}) Info <br />
                     Buckets are containers for data stored in S3. Learn more       
                 </Grid>
-                <Grid item xs={6} md={6}>
-                    <Button icon="pi pi-spinner" className="p-button-outlined p-button-secondary" />
-                    <Button label="Copy ARN" icon="pi pi-copy" className="p-button-outlined p-button-secondary" />
-                    <Button label="Empty" className="p-button-outlined p-button-secondary" />
-                    <Button label="Delete" className="p-button-outlined p-button-secondary" />
+                <Grid item xs={8} md={8} className="align-right pr-2">
+                    <Button icon="pi pi-spinner" className="p-button-outlined p-button-secondary mr-1" />
+                    <Button label="Copy ARN" icon="pi pi-copy" className="p-button-outlined p-button-secondary mr-1" />
+                    <Button label="Empty" className="p-button-outlined p-button-secondary mr-1" />
+                    <Button label="Delete" className="p-button-outlined p-button-secondary mr-1" />
                     <Button label="Create Bucket" onClick={handleClickCreateBucket} />        
                 </Grid>
             </Grid>
@@ -108,7 +121,7 @@ function Buckets(props: any) {
                         <Column header="AWS Region" body={nameAwsRegionBodyTemplate}></Column>
                         <Column header="Access" body={nameAwsAccessBodyTemplate}></Column>
                         <Column header="Owner" field="owner.displayName" ></Column>
-                        <Column header="Creation Date" field="creationDate"></Column>
+                        <Column header="Creation Date" body={dateBodyCreated}></Column>
                     </DataTable>
                 </Card>
             </ShowComponents>

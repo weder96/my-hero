@@ -12,12 +12,24 @@ import BucketStore from "../../store/buckets/BucketStore";
 import { autorun } from "mobx";
 import { useNavigate } from "react-router-dom";
 
+import { Card } from 'primereact/card';
+
+import BreadCrumb from "../../components/BreadCrumb";
+import { ThemeContext } from 'styled-components';
+
 
 
 function CreateBucket(props: any) {
     const { t } = useTranslation();
     const [value1, setValue1] = useState('');
     const bucketStore = useContext(BucketStore);
+    const { title } = useContext(ThemeContext);
+
+    const listScope = [{ 'label': 'Amazon S3', 'link': '/s3/buckets' }, 
+                       { 'label': 'Buckets', 'link': '/s3/buckets' }
+                      ] 
+    
+    const view = "Create Bucket";
 
     let navigate = useNavigate();
 
@@ -52,26 +64,33 @@ function CreateBucket(props: any) {
 
     return (
         <>
+            <BreadCrumb title={view} listScope={listScope} active={view}/>
+            <div className="page">
                 <h1>{t('main.bucket.create')}</h1>
-                <form className="baseForm" noValidate>
-
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <InputText
-                                name="bucket"
-                                id="bucket"
-                                className="bucket formField"
-                                value={value1} // We also bind our email value
-                                onChange={(e) => setValue1(e.target.value)} // And, we bind our "onChange" event. 
-                            />
-
+                <br/>
+                <Card title="General configuration" className={title === 'dark' ? 'base-card-dark align-left' :'base-card align-left'} style={{ width: '50rem', marginBottom: '2em' }}>
+                    <form className="baseForm" noValidate>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <label>Name Bucket</label>
+                                <br/>
+                                <InputText
+                                    name="bucket"
+                                    id="bucket"
+                                    className="bucket formField width-350"
+                                    value={value1} // We also bind our email value
+                                    onChange={(e) => setValue1(e.target.value)} // And, we bind our "onChange" event. 
+                                />
+                                <p style={{lineHeight: '1.5'}}>Bucket name must be unique and must not contain spaces or uppercase letters. See rules for bucket naming</p>
+                            </Grid>
+                            <Grid item xs={12} className="align-right">
+                                <Button type="button" label="Cancel" icon="pi pi-check" className="p-button-secondary mr-2" onClick={(e)=> goPageInitial(e)}/>
+                                <Button type="submit" label="Create Bucket" icon="pi pi-check" onClick={(e) => saveNameBucket(e)} />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12}>
-                            <Button type="button" label="Cancel" icon="pi pi-check" className="p-button-secondary" onClick={(e)=> goPageInitial(e)}/>
-                            <Button type="submit" label="Create Bucket" icon="pi pi-check" onClick={(e) => saveNameBucket(e)} />
-                        </Grid>
-                    </Grid>
-                </form>
+                    </form>
+                </Card>
+            </div>
         </>
     );
 }
