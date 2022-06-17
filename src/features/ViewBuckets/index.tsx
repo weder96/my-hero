@@ -138,13 +138,23 @@ function ViewBuckets(props: any) {
     return valid;
    }
 
-    useEffect(() => {    
-        function fetchBucketsByName(){
-            bucketStore.findObjectsByName(bucket);        
-        }
-        fetchBucketsByName();
-        // eslint-disable-next-line react-hooks/exhaustive-deps    
-      }, []);
+
+   const download = () => {
+       console.log('download', selectedObjects)
+       bucketStore.download(selectedObjects)
+   }
+
+   const deleteFile = () => {
+        console.log('deleteFile', selectedObjects)
+        bucketStore.deleteFile(selectedObjects)
+   }
+
+   const fetchBucketsByName = () => {
+    bucketStore.findObjectsByName(bucket);    // eslint-disable-next-line react-hooks/exhaustive-deps     
+   }
+
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   useEffect(fetchBucketsByName, []); 
     const { t } = useTranslation();
     return (
         <React.Fragment>
@@ -161,21 +171,22 @@ function ViewBuckets(props: any) {
                     <Button icon="pi pi-spinner" className="p-button-outlined p-button-secondary mr-1" />
                     <Button label="Copy S3 URI" icon="pi pi-copy" className="p-button-outlined p-button-secondary mr-1" />
                     <Button label="Copy URL" icon="pi pi-copy" className="p-button-outlined p-button-secondary mr-1" />
-                    <Button label="Dowload" icon="pi pi-copy" className="p-button-outlined p-button-secondary mr-1" />
-                    <Button label="Open" icon="pi pi-copy" className="p-button-outlined p-button-secondary mr-1" />
+                    <Button label="Dowload" icon="pi pi-copy" className="p-button-outlined p-button-secondary mr-1" onClick={download}/>
+                    <Button label="Open" icon="pi pi-copy" className="p-button-outlined p-button-secondary mr-1" onClick={deleteFile}/>
                     <Button label="Delete" icon="pi pi-copy" className="p-button-outlined p-button-secondary mr-1" />
                     <Button label="Actions" icon="pi pi-copy" className="p-button-outlined p-button-secondary mr-1" />
                     <Button label="Create Folder" icon="pi pi-copy" className="p-button-outlined p-button-secondary mr-1" />
                     <Button label="Upload" icon="pi pi-cloud" onClick={handleClickUpload}/>     
                 </Grid>
             </Grid>
-
             <br/>
             <Card title="" className={title === 'dark' ? 'card-dark mb-4' : 'base-card-ligth'}>
                     <DataTable value={verifyFolderByObject(bucketStore.objects)} 
-                               selection={selectedObjects}
-                               onSelectionChange={(e) => setSelectedObjects(e.value)}
-                                dataKey="name" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
+                                selection={selectedObjects}
+                                onSelectionChange={(e) => setSelectedObjects(e.value)}
+                                dataKey="lastModified" 
+                                selectionPageOnly 
+                                paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Objects"
                                 responsiveLayout="scroll"

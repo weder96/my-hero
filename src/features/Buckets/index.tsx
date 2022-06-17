@@ -23,7 +23,7 @@ import { formatedDate } from "../../utils/utils";
 
 function Buckets(props: any) {
     let navigate = useNavigate();
-    const [selectedProducts, setSelectedProducts] = useState(null);
+    const [selectedBuckets, setSelectedBuckets] = useState(null);
     const bucketStore = useContext(BucketStore);
     const { title } = useContext(ThemeContext);
     console.log('title ', title)
@@ -110,8 +110,8 @@ function Buckets(props: any) {
             <ShowComponents case={bucketStore.buckets.length > 0}>
                 <Card title="" className={title === 'dark' ? 'card-dark mb-4' : 'base-card-ligth'}>
                     <DataTable value={bucketStore.buckets}
-                        selection={selectedProducts}
-                        onSelectionChange={(e) => setSelectedProducts(e.value)}
+                        selection={selectedBuckets}
+                        onSelectionChange={(e) => setSelectedBuckets(e.value)}
                         dataKey="name" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} buckets"
