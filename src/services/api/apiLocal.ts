@@ -28,6 +28,7 @@ apiLocal.interceptors.request.use(function (config) {
 
   apiLocal.interceptors.response.use(function (response) {
     appStore.decrementLoading();
+    console.log('interceptor ', response)
     return response;
   }, function (error) {
     console.log('error response :', error)

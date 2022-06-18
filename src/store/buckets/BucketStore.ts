@@ -43,25 +43,17 @@ class BucketStore {
 
   download = (selectObjects: any) => {      
     console.log('selectObjects store ', selectObjects[0])   
-    apiLocal.get(this.baseApiBucket+"/bucket/"+selectObjects[0].bucketName+"/image/"+selectObjects[0].key+"/download", {responseType: 'blob'} )
+    apiLocal.get(this.baseApiBucket+"/bucket/"+selectObjects[0].bucketName+"/image/"+selectObjects[0].key+"/download", 
+    {responseType: 'blob'} 
+    )
     .then((response: any) => {
-      response.blob.then((blob: any) => {
-      // Create blob link to download
-      const url = window.URL.createObjectURL(blob);
-      const target: any = document.createElement('a');
-    
-
-      // Append to html link element page
-      document.body.appendChild(target);
-
-      target.download = selectObjects[0].key;
-      target.href = url;
-      target.click();
-
-      //TODO Revisar com o Paulo a necessidade desse parametro, pois no EDGE está dando problema.
-      //window.URL.revokeObjectURL(url);
-      document.body.removeChild(target);
-      });
+      console.log('response', response)
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', selectObjects[0].key); //or any other extension
+      document.body.appendChild(link);
+      link.click();
     });    
   };
 
@@ -73,7 +65,6 @@ class BucketStore {
 
   uploadFilesS3 = (files: any, bucket: string, profileId: string) => {
     let url = "image/upload";
-    console.log('uploadFilesS3 ', files)
     let formData = new FormData();
     formData.append('file', files.files[0]);
     formData.append('bucket', bucket);
@@ -86,7 +77,7 @@ class BucketStore {
 
   createBucket = ( bucket: string) => {
     let url = "createBucket";
-    apiLocal.post(this.baseApiBucket+"/"+url, bucket)
+    apiLocal.post(this.baseApiBucket+"/"+url, bucket, { headers: { 'Content-Type': 'application/json'}})
             .then(res => {
               console.log('createBucket ', res)
               this.nameCreated =  bucket;
